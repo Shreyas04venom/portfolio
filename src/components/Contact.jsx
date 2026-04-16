@@ -11,24 +11,10 @@ import { slideIn } from "../utils/motion";
 // Import MDBootstrap components
 import { MDBFooter } from 'mdb-react-ui-kit';
 
-// Import Firebase
-import { initializeApp } from "firebase/app";
-import { getFirestore, collection, addDoc, serverTimestamp } from "firebase/firestore";
-
-// Firebase configuration
-const firebaseConfig = {
-  apiKey: "AIzaSyCSOdWZA5K2lGkk2cAeAkFPlOoxotD__S8",
-  authDomain: "signuplogin-4664a.firebaseapp.com",
-  projectId: "signuplogin-4664a",
-  storageBucket: "signuplogin-4664a.firebasestorage.app",
-  messagingSenderId: "598006304340",
-  appId: "1:598006304340:web:f693c315e9a07c1b69a7c1",
-  measurementId: "G-7Z8H3E3W5T"
-};
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+const SERVICE_ID = 'service_2zksqjd';
+const CONTACT_TEMPLATE_ID = 'template_9mqhamk';   // email to you (admin)
+const AUTOREPLY_TEMPLATE_ID = 'template_e1e95bx'; // auto-reply to sender
+const PUBLIC_KEY = 'bW_88r4ZKcZ4a-_HV';
 
 const Contact = () => {
   const formRef = useRef();
@@ -52,7 +38,7 @@ const Contact = () => {
   };
 
   // Handle form submission
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     // Basic form validation
@@ -63,56 +49,44 @@ const Contact = () => {
 
     setLoading(true);
 
-    const serviceId = 'service_2o6bsqg'; // Your service ID
-    const templateId = 'template_9mqhamk'; // Your template ID
-    const publicKey = 'bW_88r4ZKcZ4a-_HV'; // Your public key
-
-    const templateParams = {
-      from_name: form.name,
-      to_name: "Shreyas Mastery",
-      from_email: form.email,
-      to_email: "shreyasmahajan0306@gmail.com", // Replace with your email
-      message: form.message,
-    };
-
-    // Save to Firebase Firestore
-    const saveToFirebase = async () => {
-      try {
-        const docRef = await addDoc(collection(db, "contact_submissions"), {
-          name: form.name,
-          email: form.email,
+    try {
+      // 1) Send contact email to admin
+      await emailjs.send(
+        SERVICE_ID,
+        CONTACT_TEMPLATE_ID,
+        {
+          from_name: form.name,
+          to_name: "Shreyas Mastery",
+          from_email: form.email,
+          to_email: "shreyasmahajan0306@gmail.com",
           message: form.message,
-          timestamp: serverTimestamp(),
-          createdAt: new Date().toLocaleString()
-        });
-        console.log("Document written with ID: ", docRef.id);
-      } catch (error) {
-        console.error("Error adding document: ", error);
-      }
-    };
-
-    // Sending email using EmailJS
-    emailjs.send(serviceId, templateId, templateParams, publicKey)
-      .then(
-        async (response) => {
-          // Save to Firebase after successful email send
-          await saveToFirebase();
-          
-          setLoading(false);
-          console.log("EmailJS Success:", response);  // Log success response
-          alert("Thank you. I will get back to you as soon as possible.");
-          setForm({
-            name: "",
-            email: "",
-            message: "",
-          });
+          reply_to: form.email,
         },
-        (error) => {
-          setLoading(false);
-          console.error("EmailJS Error:", error);  // Log the error here for debugging
-          alert("Ahh, something went wrong. Please try again.");
-        }
+        PUBLIC_KEY
       );
+
+      // 2) Send auto-reply to the user
+      await emailjs.send(
+        SERVICE_ID,
+        AUTOREPLY_TEMPLATE_ID,
+        {
+          to_name: form.name,
+          to_email: form.email,
+          from_name: "Shreyas Mastery",
+          reply_to: "shreyasmahajan0306@gmail.com",
+          message: form.message,
+        },
+        PUBLIC_KEY
+      );
+
+      setLoading(false);
+      alert("Thank you. I will get back to you as soon as possible.");
+      setForm({ name: "", email: "", message: "" });
+    } catch (error) {
+      setLoading(false);
+      console.error("EmailJS Error:", error);
+      alert(`Ahh, something went wrong. Please try again.\nError Details: ${error?.text || error?.message || JSON.stringify(error)}`);
+    }
   };
 
   return (

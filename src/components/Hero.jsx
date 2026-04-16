@@ -1,45 +1,56 @@
 import { motion } from "framer-motion";
-import { useEffect } from "react"; // Import useEffect to load scripts on component mount
+import { useEffect, useRef } from "react"; 
 import { styles } from "../styles";
 import { ComputersCanvas } from "./canvas";
 
 const Hero = () => {
+  const textRef = useRef(null);
+  const typedRef = useRef(null);
 
-  // Use useEffect to load the Typed.js script dynamically
   useEffect(() => {
-    const script = document.createElement('script');
-    script.src = 'https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js';
-    script.async = true;
-    script.onload = () => {
-      const typed = new Typed('.text', {
-        strings: ['Front-Developer', 'Web-Designer', 'Youtuber'],
-        typeSpeed: 70,
-        backSpeed: 70,
-        backDelay: 1000,
-        startDelay: 1000,
-        loop: true,
-        showCursor: false,  // Ensure the cursor is visible
-        preStringTyped: () => {
-          // Ensure that the newly typed text is colored
-          const typedElement = document.querySelector('.typed-cursor');
-          if (typedElement) {
-            typedElement.style.color = '#915EFF'; // Change the color of the cursor to match the text
-          }
-        },
-        onStringTyped: () => {
-          // Make sure only one cursor is visible and has correct styling
-          const typedElement = document.querySelector('.typed-cursor');
-          if (typedElement) {
-            typedElement.style.animation = 'blink 0.75s step-end infinite';  // Ensure proper blinking
-          }
-        },
-      });
-    };
-    document.head.appendChild(script);
+    const initTyped = () => {
+      // Destroy any existing instance just in case
+      if (typedRef.current) {
+        typedRef.current.destroy();
+      }
 
-    // Cleanup the script after the component unmounts
+      if (window.Typed && textRef.current) {
+        typedRef.current = new window.Typed(textRef.current, {
+          strings: ['Front-Developer', 'Web-Designer', 'Youtuber'],
+          typeSpeed: 70,
+          backSpeed: 70,
+          backDelay: 1000,
+          startDelay: 1000,
+          loop: true,
+          showCursor: true, 
+          cursorChar: '|',
+        });
+        
+        // Dynamically style the cursor if it exists
+        const cursor = document.querySelector('.typed-cursor');
+        if (cursor) {
+          cursor.style.color = '#915EFF';
+          cursor.style.animation = 'blink 0.75s step-end infinite';
+        }
+      }
+    };
+
+    if (!window.Typed) {
+      const script = document.createElement('script');
+      script.src = 'https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js';
+      script.async = true;
+      script.onload = initTyped;
+      document.head.appendChild(script);
+    } else {
+      initTyped();
+    }
+
+    // Cleanup function that destroys the Typed instance to fix blinking/hanging
     return () => {
-      document.head.removeChild(script);
+      if (typedRef.current) {
+        typedRef.current.destroy();
+        typedRef.current = null;
+      }
     };
   }, []);
 
@@ -57,11 +68,13 @@ const Hero = () => {
           </h1>
 
           <p className={`${styles.heroSubText} mt-2 text-white-100`}>
-            I want to be <span className="text-[#915EFF] text"></span>
+            I want to be <span className="text-[#915EFF]" ref={textRef}></span>
           </p>
           
           <div className="btn-box">
-            <a href="#">Hire Me</a>
+            <a href="https://www.linkedin.com/in/shreyas-mahajan07/" target="_blank" rel="noopener noreferrer" className="text-white hover:text-[#915EFF] transition-colors">
+              Hire Me
+            </a>
             <a href="#contact">Let's Talk</a>
           </div>
 

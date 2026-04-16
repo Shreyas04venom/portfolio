@@ -20,9 +20,9 @@ import {
   starbucks,
   tesla,
   shopify,
-  carrent,
-  jobit,
-  tripguide,
+  silent_classrooms,
+  taxwise_ai,
+  orgmind,
   threejs,
 } from "../assets";
 import { interleaveAttributes } from "three/examples/jsm/utils/BufferGeometryUtils.js";
@@ -178,7 +178,7 @@ const testimonials = [
   {
     testimonial:
       "I thought it was impossible to make a website as beautiful as our product, but Rick proved me wrong.",
-    name: "Sara Lee",
+    name: "Sara Rodrigues",
     designation: "HOD",
     company: "ECS",
     image: "https://randomuser.me/api/portraits/women/4.jpg",
@@ -194,7 +194,7 @@ const testimonials = [
   {
     testimonial:
       "As a 1st year engineeering student, this thing is very imapactful.",
-    name: "Lisa Wang",
+    name: "Lisa Rebello",
     designation: "HOD",
     company: "Computer",
     image: "https://randomuser.me/api/portraits/women/6.jpg",
@@ -203,67 +203,67 @@ const testimonials = [
 
 const projects = [
   {
-    name: "Weather-Tunes-App",
+    name: " Silent Classrooms",
     description:
-      "The Weather Music App is an innovative project that combines weather conditions with music recommendations. Based on the real-time weather at your location, the app fetches songs that perfectly match the ambiance, offering a unique and immersive experience.",
+      "Silent Classrooms is an AI-powered web application designed to make classroom learning accessible and effective for students with hearing impairments. Traditional education systems rely heavily on spoken communication, which creates a major barrier for deaf and hard-of-hearing students in understanding concepts in real time.",
     tags: [
       {
-        name: "Weather API",
+        name: "GEMINI API",
         color: "blue-text-gradient",
       },
       {
-        name: "Spotify API",
+        name: "PSE",
         color: "green-text-gradient",
       },
       {
-        name: "Geolocation API",
+        name: "YOUTUBE DATA API",
         color: "pink-text-gradient",
       },
     ],
-    image: carrent,
-    source_code_link: "https://github.com/Shreyas04venom/Weather-Tunes-App.git",
+    image: silent_classrooms,
+    source_code_link: "https://github.com/Shreyas04venom/silence-classroom.git",
   },
   {
-    name: "AI-based-Personalized-Learning",
+    name: "Taxwise AI",
     description:
-      "This repository contains the source code, resources, and documentation for an AI-powered personalized learning application. The platform is designed to provide tailored educational experiences for students by leveraging advanced machine learning algorithms and AI technologies.",
+      "Tax-Wise AI is a chatbot-style tool that assists users in understanding taxation concepts. It provides quick explanations, answers tax-related queries, and breaks down topics in a simplified manner. The project focuses on making financial and GST knowledge accessible for students and beginners through an AI-based conversational interface.",
     tags: [
       {
-        name: "openai",
+        name: "OCR",
         color: "blue-text-gradient",
       },
       {
-        name: "restapi",
+        name: "OpenAI API",
         color: "green-text-gradient",
       },
       {
-        name: "css",
+        name: "SUPABASE",
         color: "pink-text-gradient",
       },
     ],
-    image: jobit,
-    source_code_link: "https://github.com/Shreyas04venom/AI-based-Personalized-Learning-.git",
+    image: taxwise_ai,
+    source_code_link: "https://github.com/Shreyas04venom/taxwise.git",
   },
   {
-    name: "AI-based-Personalized-Learning",
+    name: "OrgMind",
     description:
-      "This repository contains the source code, resources, and documentation for an AI-powered personalized learning application. The platform is designed to provide tailored educational experiences for students by leveraging advanced machine learning algorithms and AI technologies.",
+      "OrgMind is an AI-powered enterprise platform that centralizes organizational knowledge and enhances decision-making through intelligent search, decision tracking, and expert discovery. It uses AI-driven workflows and a scalable full-stack architecture to improve productivity and reduce information silos across teams.",
     tags: [
       {
-        name: "nextjs",
+        name: "Edge Functions",
         color: "blue-text-gradient",
       },
       {
-        name: "supabase",
+        name: "SUPABASE",
         color: "green-text-gradient",
       },
       {
-        name: "css",
+        name: "GEMINI API",
         color: "pink-text-gradient",
       },
     ],
-    image: tripguide,
-    source_code_link: "https://github.com/Shreyas04venom/AI-based-Personalized-Learning-.git",
+    image: orgmind,
+    source_code_link: "https://github.com/Shreyas04venom/orgMind.git",
   },
 ];
 
