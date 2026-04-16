@@ -49,7 +49,7 @@ const About = () => {
             variants={fadeIn("", "", 0.2, 1)}
             className='mt-4 text-secondary text-[17px] max-w-3xl leading-[30px]'
           >
-            As a first-year engineering student studying at FRCRCE, I am passionate
+            As a second-year engineering student studying at FRCRCE, I am passionate
             about developing my technical skills and applying them in practical ways to
             solve real-world problems. My journey in engineering has just begun, and I am
             excited to learn more about the different fields of technology, particularly in
