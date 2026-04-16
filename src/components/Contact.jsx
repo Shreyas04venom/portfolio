@@ -14,7 +14,7 @@ import { MDBFooter } from 'mdb-react-ui-kit';
 const SERVICE_ID = 'service_2zksqjd';
 const CONTACT_TEMPLATE_ID = 'template_9mqhamk';   // email to you (admin)
 const AUTOREPLY_TEMPLATE_ID = 'template_e1e95bx'; // auto-reply to sender
-const PUBLIC_KEY = 'bW_88r4ZKcZ4a-_HV';
+const PUBLIC_KEY = 'nhR2mpvLbA1xXP7np';
 
 const Contact = () => {
   const formRef = useRef();
@@ -59,6 +59,8 @@ const Contact = () => {
           to_name: "Shreyas Mastery",
           from_email: form.email,
           to_email: "shreyasmahajan0306@gmail.com",
+          user_email: form.email, // alias
+          email: form.email,      // alias
           message: form.message,
           reply_to: form.email,
         },
@@ -72,6 +74,9 @@ const Contact = () => {
         {
           to_name: form.name,
           to_email: form.email,
+          user_email: form.email, // alias
+          email: form.email,      // alias
+          from_email: "shreyasmahajan0306@gmail.com",
           from_name: "Shreyas Mastery",
           reply_to: "shreyasmahajan0306@gmail.com",
           message: form.message,
