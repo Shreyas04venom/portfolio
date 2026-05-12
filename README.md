@@ -56,11 +56,6 @@ A modern, interactive 3D developer portfolio website built with cutting-edge web
 - **ESLint Plugin React Hooks** (v4.6.0) - Linting rules for React Hooks
 - **ESLint Plugin React Refresh** (v0.4.4) - ESLint plugin for React Refresh
 
-### Language Composition
-- **JavaScript** - 85.6% (Core application logic)
-- **CSS** - 13.6% (Styling and animations)
-- **HTML** - 0.8% (Markup)
-
 ---
 
 ## 📁 Project Structure
