@@ -59,8 +59,6 @@ const Contact = () => {
           to_name: "Shreyas Mastery",
           from_email: form.email,
           to_email: "shreyasmahajan0306@gmail.com",
-          user_email: form.email, // alias
-          email: form.email,      // alias
           message: form.message,
           reply_to: form.email,
         },
@@ -74,9 +72,6 @@ const Contact = () => {
         {
           to_name: form.name,
           to_email: form.email,
-          user_email: form.email, // alias
-          email: form.email,      // alias
-          from_email: "shreyasmahajan0306@gmail.com",
           from_name: "Shreyas Mastery",
           reply_to: "shreyasmahajan0306@gmail.com",
           message: form.message,
@@ -95,7 +90,7 @@ const Contact = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-[auto]">
+    <div className="flex flex-col w-250 min-h-[auto]">
       <div className="xl:mt-12 flex xl:flex-row flex-col-reverse gap-10 overflow-hidden">
         <motion.div
           variants={slideIn("left", "tween", 0.2, 1)}
