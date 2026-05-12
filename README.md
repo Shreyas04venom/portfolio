@@ -271,6 +271,5 @@ Have questions or want to collaborate? Feel free to reach out through:
 
 ---
 
-**Made with ❤️ by Shreyas**
 
 *Last Updated: May 2026*
