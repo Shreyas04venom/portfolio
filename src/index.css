@@ -305,6 +305,29 @@ img {
   }
 }
 
+/* Video background styles for perfect responsiveness */
+video {
+  display: block;
+}
+
+/* Ensure video covers entire container on all devices */
+@media (max-width: 640px) {
+  video {
+    object-fit: cover !important;
+    width: 100vw !important;
+    height: 100vh !important;
+  }
+}
+
+/* Prevent video flickering on mobile devices */
+video::-webkit-media-controls {
+  display: none !important;
+}
+
+video::-webkit-media-controls-enclosure {
+  display: none !important;
+}
+
 /* styles.css */
 .section-title {
   font-size: 2rem;
