@@ -36,5 +36,18 @@
     "postcss": "^8.4.31",
     "tailwindcss": "^3.3.5",
     "vite": "^4.5.0"
-  }
+  },
+  "description": "A modern, interactive 3D developer portfolio website built with cutting-edge web technologies. This portfolio showcases projects, skills, experience, and provides an engaging way to connect with potential employers and collaborators.",
+  "main": "postcss.config.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Shreyas04venom/portfolio.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Shreyas04venom/portfolio/issues"
+  },
+  "homepage": "https://github.com/Shreyas04venom/portfolio#readme"
 }
